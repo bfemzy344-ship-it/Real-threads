@@ -242,6 +242,40 @@
     function checkWithdrawal() {
         alert("Withdrawal requests are processed between the 25th and 30th of each month. Your current balance must be at least ₦5,000.");
     }
+        // --- PERSISTENCE LOGIC START ---
+    
+    // Check for an existing session whenever the page loads
+    window.onload = async () => {
+        const { data: { session } } = await _supabase.auth.getSession();
+        if (session) {
+            updateUI(session.user);
+        }
+    };
+
+    // This function updates the balance and switches the view
+    async function updateUI(user) {
+        const { data: profile } = await _supabase
+            .from('profiles')
+            .select('balance')
+            .eq('id', user.id)
+            .single();
+
+        if (profile) {
+            document.getElementById('displayBalance').innerText = "₦" + profile.balance.toLocaleString();
+        }
+
+        document.getElementById('loginOverlay').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
+    }
+
+    // Replace your Sign Out logic to actually sign out of Supabase
+    async function handleSignOut() {
+        await _supabase.auth.signOut();
+        location.reload(); 
+    }
+    
+    // --- PERSISTENCE LOGIC END ---
+
 </script>
 
 </body>
