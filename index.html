@@ -275,6 +275,12 @@
     }
     
     // --- PERSISTENCE LOGIC END ---
+    window.onload = async () => {
+        const { data: { session } } = await _supabase.auth.getSession();
+        if (session) {
+            updateUI(session.user);
+        }
+    };
 
 </script>
 
