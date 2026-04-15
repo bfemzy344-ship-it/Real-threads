@@ -21,7 +21,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding-bottom: 70px; /* Space for nav bar */
+            padding-bottom: 80px; /* Space for fixed bottom nav */
         }
 
         .container { 
@@ -100,7 +100,7 @@
             color: white; border-radius: 5px; box-sizing: border-box;
         }
 
-        /* Bottom Navigation */
+        /* Bottom Navigation Bar */
         .bottom-nav {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background: #111; border-top: 1px solid var(--gold);
@@ -109,14 +109,15 @@
         }
 
         .nav-item {
-            color: #888; text-decoration: none; font-size: 12px;
+            color: #888; text-decoration: none; font-size: 11px;
             text-transform: uppercase; font-weight: bold; cursor: pointer;
+            transition: 0.3s;
         }
 
         .nav-item.active { color: var(--gold); }
 
         .scroll-container {
-            max-height: 500px; 
+            max-height: 480px; 
             overflow-y: auto; 
             margin-bottom: 20px;
         }
@@ -131,6 +132,8 @@
 
         .view-section { display: none; }
         .view-section.active { display: block; }
+
+        .logout-link { color: #555; font-size: 12px; text-decoration: underline; cursor: pointer; margin-top: 20px; display: inline-block; }
     </style>
 </head>
 <body>
@@ -142,13 +145,14 @@
         <input type="email" id="email" placeholder="Email Address">
         <input type="password" id="pass" placeholder="Password">
         <button class="btn" id="loginBtn" onclick="enterApp()">Login / Create Account</button>
+        <p style="font-size: 12px; color: #555; margin-top: 20px;">Secure Institutional Grade Investment</p>
     </div>
 </div>
 
 <div id="navBar" class="bottom-nav" style="display:none;">
-    <div class="nav-item active" onclick="showPage('home')">Home</div>
-    <div class="nav-item" onclick="showPage('balance')">Balance</div>
-    <div class="nav-item" onclick="showPage('activity')">Activity</div>
+    <div class="nav-item active" id="nav-home" onclick="showPage('home')">Home</div>
+    <div class="nav-item" id="nav-balance" onclick="showPage('balance')">Balance</div>
+    <div class="nav-item" id="nav-activity" onclick="showPage('activity')">Activity</div>
 </div>
 
 <div class="container" id="mainApp" style="display:none;">
@@ -156,7 +160,7 @@
     <div id="page-home" class="view-section active">
         <div class="header">
             <h1>REAL THREADS</h1>
-            <p style="color: var(--gold); font-size: 10px; letter-spacing: 2px;">PREMIUM PROPERTIES</p>
+            <p style="color: var(--gold); font-size: 10px; letter-spacing: 2px;">PREMIUM REAL ESTATE SHARES</p>
         </div>
 
         <div class="scroll-container">
@@ -184,6 +188,38 @@
                     <button class="btn" onclick="openPayment('Banana Island')">Invest Now</button>
                 </div>
             </div>
+            <div class="card" style="padding:0; overflow:hidden;">
+                <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=400" class="property-img">
+                <div style="padding:20px;">
+                    <h3 style="margin:0;">Eko Atlantic Horizon</h3>
+                    <p class="price">₦15,000</p>
+                    <button class="btn" onclick="openPayment('Eko Atlantic')">Invest Now</button>
+                </div>
+            </div>
+            <div class="card" style="padding:0; overflow:hidden;">
+                <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=400" class="property-img">
+                <div style="padding:20px;">
+                    <h3 style="margin:0;">Abuja Maitama Heights</h3>
+                    <p class="price">₦12,000</p>
+                    <button class="btn" onclick="openPayment('Maitama Heights')">Invest Now</button>
+                </div>
+            </div>
+            <div class="card" style="padding:0; overflow:hidden;">
+                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=400" class="property-img">
+                <div style="padding:20px;">
+                    <h3 style="margin:0;">Victoria Island Apex</h3>
+                    <p class="price">₦7,500</p>
+                    <button class="btn" onclick="openPayment('VI Apex')">Invest Now</button>
+                </div>
+            </div>
+            <div class="card" style="padding:0; overflow:hidden;">
+                <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=400" class="property-img">
+                <div style="padding:20px;">
+                    <h3 style="margin:0;">Maryland Orchid Villas</h3>
+                    <p class="price">₦5,000</p>
+                    <button class="btn" onclick="openPayment('Maryland Orchid')">Invest Now</button>
+                </div>
+            </div>
         </div>
 
         <div id="paymentArea" class="payment-box">
@@ -202,25 +238,25 @@
     <div id="page-balance" class="view-section">
         <div class="header">
             <h1>WALLET</h1>
-            <p style="color: var(--gold); font-size: 10px; letter-spacing: 2px;">ASSET OVERVIEW</p>
+            <p style="color: var(--gold); font-size: 10px; letter-spacing: 2px;">YOUR ASSETS</p>
         </div>
         <div class="card" style="text-align: center;">
-            <h3 style="margin:0; font-size: 16px; color: #aaa;">Portfolio Balance</h3>
+            <h3 style="margin:0; font-size: 16px; color: #aaa;">Current Portfolio Value</h3>
             <p id="displayBalance" style="font-size: 42px; margin: 15px 0; color: var(--gold); font-weight: bold;">₦0.00</p>
             <button class="btn" onclick="checkWithdrawal()">Request Payout</button>
         </div>
-        <div style="text-align: center; margin-top: 20px;">
-            <button class="btn btn-outline" style="width: auto; padding: 10px 30px;" onclick="handleSignOut()">Sign Out</button>
+        <div style="text-align: center;">
+            <span class="logout-link" onclick="handleSignOut()">Sign Out of Secure Portal</span>
         </div>
     </div>
 
     <div id="page-activity" class="view-section">
         <div class="header">
             <h1>ACTIVITY</h1>
-            <p style="color: var(--gold); font-size: 10px; letter-spacing: 2px;">TRANSACTION LOG</p>
+            <p style="color: var(--gold); font-size: 10px; letter-spacing: 2px;">TRANSACTION HISTORY</p>
         </div>
-        <div class="card" style="padding: 20px; text-align: center;">
-            <p style="color: #666; font-size: 14px;">No recent activity found.<br>New investments will appear here.</p>
+        <div class="card" style="padding: 25px; text-align: center;">
+            <p style="color: #666; font-size: 14px;">No transactions found.<br>Records of your shares will appear here.</p>
         </div>
     </div>
 
@@ -228,31 +264,30 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+    // Config
     const S_URL = "https://cdeyjqoldxcccvertmsc.supabase.co";
     const S_KEY = "sb_publishable_hCXRwG-dYteeLvkgQcJrOg_FIivzgBB";
     const _supabase = supabase.createClient(S_URL, S_KEY);
 
+    // Persistence Check
     window.onload = async () => {
         const { data: { session } } = await _supabase.auth.getSession();
-        if (session) {
-            updateUI(session.user);
-        }
+        if (session) updateUI(session.user);
     };
 
+    // Navigation Switcher
     function showPage(pageId) {
-        // Switch sections
-        document.querySelectorAll('.view-section').forEach(section => {
-            section.classList.remove('active');
-        });
+        document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
         document.getElementById('page-' + pageId).classList.add('active');
 
-        // Switch nav active state
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.remove('active');
-            if(item.innerText.toLowerCase() === pageId) item.classList.add('active');
-        });
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        document.getElementById('nav-' + pageId).classList.add('active');
+        
+        // Hide payment area if switching pages
+        document.getElementById('paymentArea').style.display = 'none';
     }
 
+    // UI Refresh
     async function updateUI(user) {
         const { data: profile } = await _supabase
             .from('profiles').select('balance').eq('id', user.id).single();
@@ -265,13 +300,14 @@
         document.getElementById('navBar').style.display = 'flex';
     }
 
+    // Login/Sign Up Logic
     async function enterApp() {
         const email = document.getElementById('email').value;
         const password = document.getElementById('pass').value;
         const btn = document.getElementById('loginBtn');
 
-        if (!email || !password) return alert("Enter credentials");
-        btn.innerText = "Authenticating..."; btn.disabled = true;
+        if (!email || !password) return alert("Please fill all fields");
+        btn.innerText = "Processing..."; btn.disabled = true;
 
         const { data: authData, error: loginError } = await _supabase.auth.signInWithPassword({ email, password });
 
@@ -281,25 +317,26 @@
                 alert(signUpError.message);
                 btn.innerText = "Login / Create Account"; btn.disabled = false;
             } else {
-                alert("Account created! You can now log in.");
-                btn.innerText = "Login / Create Account"; btn.disabled = false;
+                alert("Account created! Logging in...");
+                setTimeout(() => location.reload(), 1500);
             }
         } else {
             updateUI(authData.user);
         }
     }
 
-    function openPayment(propertyName) {
+    // WhatsApp Payment Bridge
+    function openPayment(property) {
         const area = document.getElementById('paymentArea');
         area.style.display = 'block';
         const waLink = document.getElementById('waLink');
-        const msg = `I have made a payment for shares in: ${propertyName}`;
+        const msg = `I have made a payment for shares in: ${property}`;
         waLink.href = `https://wa.me/2347047056423?text=${encodeURIComponent(msg)}`;
         area.scrollIntoView({ behavior: 'smooth' });
     }
 
     function checkWithdrawal() {
-        alert("Withdrawal processing is between the 25th and 30th. Minimum ₦5,000 required.");
+        alert("Withdrawals are processed 25th-30th of each month. Minimum balance: ₦5,000.");
     }
 
     async function handleSignOut() {
