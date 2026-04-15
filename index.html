@@ -116,14 +116,34 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-    function enterApp() {
+    // Real Threads Database Connection
+    const S_URL = "https://cdeyjqoldxcccvertmsc.supabase.co";
+    const S_KEY = "sb_publishable_hCXRwG-dYteeLvkgQcJrOg_FIivzgBB";
+    const _supabase = supabase.createClient(S_URL, S_KEY);
+
+    async function enterApp() {
         const email = document.getElementById('email').value;
-        if(email.includes('@')) {
+        const password = document.getElementById('pass').value;
+
+        if (!email || !password) {
+            alert("Please enter your credentials.");
+            return;
+        }
+
+        // This logs in existing users OR creates new accounts automatically
+        const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
+
+        if (error) {
+            const { error: signUpError } = await _supabase.auth.signUp({ email, password });
+            if (signUpError) alert(signUpError.message);
+            else alert("Account created! You can now log in.");
+        } else {
+            // Success! Reveal the premium dashboard
             document.getElementById('loginOverlay').style.display = 'none';
             document.getElementById('mainApp').style.display = 'block';
-        } else {
-            alert("Please enter a valid email to create your account.");
         }
     }
 
@@ -136,5 +156,3 @@
     }
 </script>
 
-</body>
-</html>
