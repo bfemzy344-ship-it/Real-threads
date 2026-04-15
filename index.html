@@ -3,58 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real Threads | Real Estate Shares</title>
+    <title>Real Threads | Property Shares</title>
     <style>
-        body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
-        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .btn { background: #28a745; color: white; padding: 10px 15px; border: none; border-radius: 5px; width: 100%; font-size: 16px; cursor: pointer; }
-        .payment-info { background: #e9ecef; padding: 15px; border-radius: 5px; display: none; margin-top: 10px; }
-        h1 { color: #333; }
-        .status { color: #555; font-size: 14px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 500px; margin: auto; }
+        .header { text-align: center; padding-bottom: 20px; border-bottom: 2px solid #ddd; margin-bottom: 20px; }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .price { font-size: 24px; color: #2ecc71; font-weight: bold; }
+        .btn { background: #1a73e8; color: white; padding: 12px; border: none; border-radius: 8px; width: 100%; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .btn-withdraw { background: #34495e; }
+        .payment-box { display: none; background: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 14px; }
+        .stats { display: flex; justify-content: space-between; margin-top: 10px; font-size: 14px; color: #666; }
     </style>
 </head>
 <body>
 
-    <h1>Real Threads</h1>
-    
+<div class="container">
+    <div class="header">
+        <h1>Real Threads</h1>
+        <p>Invest in Real Estate Shares</p>
+    </div>
+
     <div class="card">
-        <h3>Lekki Phase 1 Apartment</h3>
-        <p>Price per share: <b>₦3,000</b></p>
-        <button class="btn" onclick="showPayment()">Buy Shares</button>
-        
-        <div id="paymentBox" class="payment-info">
-            <p><strong>Transfer to:</strong></p>
-            <p>Bank: Momo PSB</p>
-            <p>Acct: 7047056423</p>
-            <p>Name: Real Threads</p>
-            <p><small>Upload receipt to WhatsApp for verification.</small></p>
+        <h3>Lekki Residential Suite</h3>
+        <p class="price">₦3,000 <span style="font-size: 14px; color: #888;">per share</span></p>
+        <p>Earn monthly returns on premium property rentals.</p>
+        <button class="btn" onclick="openPayment()">Buy Shares</button>
+
+        <div id="paymentArea" class="payment-box">
+            <strong>Payment Instructions:</strong><br>
+            Transfer at least ₦3,000 to:<br><br>
+            <b>Bank:</b> Momo PSB<br>
+            <b>Account:</b> 7047056423<br>
+            <b>Name:</b> Real Threads<br><br>
+            <i>Send your receipt to admin for confirmation.</i>
         </div>
     </div>
 
     <div class="card">
         <h3>Your Earnings</h3>
-        <p id="balance">Balance: ₦0.00</p>
-        <p class="status">Min. withdrawal: ₦5,000 (Monthly)</p>
-        <button class="btn" style="background:#007bff;" onclick="withdraw()">Withdraw Earnings</button>
+        <p style="font-size: 28px; margin: 5px 0;">₦0.00</p>
+        <div class="stats">
+            <span>Min. Withdrawal: ₦5,000</span>
+            <span>Cycle: Monthly</span>
+        </div>
+        <button class="btn btn-withdraw" onclick="checkWithdrawal()">Withdraw Funds</button>
     </div>
+</div>
 
-    <script>
-        function showPayment() {
-            document.getElementById('paymentBox').style.display = 'block';
-        }
+<script>
+    function openPayment() {
+        document.getElementById('paymentArea').style.display = 'block';
+    }
 
-        function withdraw() {
-            const balance = 0; // This would come from your database
-            const today = new Date().getDate();
-            
-            if (balance < 5000) {
-                alert("Minimum withdrawal is ₦5,000.");
-            } else if (today < 25) {
-                alert("Withdrawals are only open from the 25th of every month.");
-            } else {
-                alert("Withdrawal request sent!");
-            }
+    function checkWithdrawal() {
+        const balance = 0; // Placeholder for logic
+        const day = new Date().getDate();
+
+        if (balance < 5000) {
+            alert("Sorry, your earnings must reach ₦5,000 before you can withdraw.");
+        } else if (day < 25) {
+            alert("Withdrawals are only processed once a month (from the 25th onwards).");
+        } else {
+            alert("Withdrawal request received!");
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
