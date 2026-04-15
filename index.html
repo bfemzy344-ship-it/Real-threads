@@ -89,7 +89,6 @@
 
         .stats { display: flex; justify-content: space-between; margin-top: 15px; color: #aaa; font-size: 13px; }
 
-        /* Login Overlay */
         #loginOverlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--black); z-index: 1000; display: flex;
@@ -97,39 +96,30 @@
         }
         
         input {
-            width: 100%; 
-            padding: 12px; 
-            margin: 10px 0;
-            background: #333; 
-            border: 1px solid #555; 
-            color: white; 
-            border-radius: 5px;
-            box-sizing: border-box;
+            width: 100%; padding: 12px; margin: 10px 0;
+            background: #333; border: 1px solid #555; 
+            color: white; border-radius: 5px; box-sizing: border-box;
         }
 
         .logout-btn {
-            background: none;
-            border: none;
-            color: #888;
-            cursor: pointer;
-            text-decoration: underline;
-            font-size: 12px;
-            margin-top: 10px;
-        }        /* Paste at Line 118 */
+            background: none; border: none; color: #888;
+            cursor: pointer; text-decoration: underline;
+            font-size: 12px; margin-top: 10px;
+        }
+
         .scroll-container {
             max-height: 420px; 
             overflow-y: auto; 
             margin-bottom: 20px;
         }
+
         .property-img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 15px 15px 0 0;
+            width: 100%; height: 160px;
+            object-fit: cover; border-radius: 15px 15px 0 0;
         }
+
         .scroll-container::-webkit-scrollbar { width: 5px; }
         .scroll-container::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
-
     </style>
 </head>
 <body>
@@ -151,8 +141,7 @@
         <p style="color: var(--gold); font-size: 10px; letter-spacing: 2px;">PREMIUM REAL ESTATE SHARES</p>
     </div>
 
-        <div class="scroll-container">
-        
+    <div class="scroll-container">
         <div class="card" style="padding:0; overflow:hidden;">
             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400" class="property-img">
             <div style="padding:20px;">
@@ -161,7 +150,6 @@
                 <button class="btn" onclick="openPayment('Lekki Diamond')">Invest Now</button>
             </div>
         </div>
-
         <div class="card" style="padding:0; overflow:hidden;">
             <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400" class="property-img">
             <div style="padding:20px;">
@@ -170,7 +158,6 @@
                 <button class="btn" onclick="openPayment('Ikoyi Zenith')">Invest Now</button>
             </div>
         </div>
-
         <div class="card" style="padding:0; overflow:hidden;">
             <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400" class="property-img">
             <div style="padding:20px;">
@@ -179,7 +166,6 @@
                 <button class="btn" onclick="openPayment('Banana Island')">Invest Now</button>
             </div>
         </div>
-
         <div class="card" style="padding:0; overflow:hidden;">
             <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=400" class="property-img">
             <div style="padding:20px;">
@@ -188,7 +174,6 @@
                 <button class="btn" onclick="openPayment('Eko Atlantic')">Invest Now</button>
             </div>
         </div>
-
         <div class="card" style="padding:0; overflow:hidden;">
             <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=400" class="property-img">
             <div style="padding:20px;">
@@ -197,8 +182,24 @@
                 <button class="btn" onclick="openPayment('Maitama Heights')">Invest Now</button>
             </div>
         </div>
-
+        <div class="card" style="padding:0; overflow:hidden;">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=400" class="property-img">
+            <div style="padding:20px;">
+                <h3 style="margin:0;">Victoria Island Apex</h3>
+                <p class="price">₦7,500 <span style="font-size: 12px; color: #888;">min. share</span></p>
+                <button class="btn" onclick="openPayment('VI Apex')">Invest Now</button>
+            </div>
+        </div>
+        <div class="card" style="padding:0; overflow:hidden;">
+            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=400" class="property-img">
+            <div style="padding:20px;">
+                <h3 style="margin:0;">Maryland Orchid Villas</h3>
+                <p class="price">₦5,000 <span style="font-size: 12px; color: #888;">min. share</span></p>
+                <button class="btn" onclick="openPayment('Maryland Orchid')">Invest Now</button>
+            </div>
+        </div>
     </div>
+
     <div id="paymentArea" class="payment-box">
         <strong style="color: var(--gold);">SECURE PAYMENT</strong><br><br>
         <div style="font-size: 14px; line-height: 1.6;">
@@ -209,8 +210,6 @@
         <a href="#" id="waLink" style="display: block; background: #25D366; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; width: 100%; text-align: center; box-sizing: border-box;">
            Submit Receipt on WhatsApp
         </a>
-    </div>
-
     </div>
 
     <div class="card">
@@ -224,122 +223,74 @@
     </div>
 
     <div style="text-align: center;">
-    <button class="logout-btn" onclick="handleSignOut()">Sign Out of Secure Portal</button>
-</div>
-
+        <button class="logout-btn" onclick="handleSignOut()">Sign Out of Secure Portal</button>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
-    // Configuration
     const S_URL = "https://cdeyjqoldxcccvertmsc.supabase.co";
     const S_KEY = "sb_publishable_hCXRwG-dYteeLvkgQcJrOg_FIivzgBB";
     const _supabase = supabase.createClient(S_URL, S_KEY);
+
+    window.onload = async () => {
+        const { data: { session } } = await _supabase.auth.getSession();
+        if (session) {
+            updateUI(session.user);
+        }
+    };
+
+    async function updateUI(user) {
+        const { data: profile } = await _supabase
+            .from('profiles').select('balance').eq('id', user.id).single();
+
+        if (profile) {
+            document.getElementById('displayBalance').innerText = "₦" + profile.balance.toLocaleString();
+        }
+        document.getElementById('loginOverlay').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
+    }
 
     async function enterApp() {
         const email = document.getElementById('email').value;
         const password = document.getElementById('pass').value;
         const btn = document.getElementById('loginBtn');
 
-        if (!email || !password) {
-            alert("Please enter both email and password.");
-            return;
-        }
+        if (!email || !password) return alert("Enter credentials");
+        btn.innerText = "Authenticating..."; btn.disabled = true;
 
-        btn.innerText = "Authenticating...";
-        btn.disabled = true;
+        const { data: authData, error: loginError } = await _supabase.auth.signInWithPassword({ email, password });
 
-        try {
-            // Attempt Login
-            const { data: authData, error: loginError } = await _supabase.auth.signInWithPassword({ email, password });
-
-            if (loginError) {
-                // If login fails, attempt to create account
-                const { data: signUpData, error: signUpError } = await _supabase.auth.signUp({ email, password });
-                
-                if (signUpError) {
-                    alert("Error: " + signUpError.message);
-                    btn.innerText = "Login / Create Account";
-                    btn.disabled = false;
-                } else {
-                    alert("Account created! If email confirmation is required, check your inbox. Otherwise, try logging in now.");
-                    btn.innerText = "Login / Create Account";
-                    btn.disabled = false;
-                }
+        if (loginError) {
+            const { error: signUpError } = await _supabase.auth.signUp({ email, password });
+            if (signUpError) {
+                alert(signUpError.message);
+                btn.innerText = "Login / Create Account"; btn.disabled = false;
             } else {
-                // Login Success -> Fetch Profile Balance
-                const { data: profile, error: profileError } = await _supabase
-                    .from('profiles')
-                    .select('balance')
-                    .eq('id', authData.user.id)
-                    .single();
-
-                if (profile) {
-                    document.getElementById('displayBalance').innerText = "₦" + profile.balance.toLocaleString();
-                }
-
-                // UI Transition
-                document.getElementById('loginOverlay').style.display = 'none';
-                document.getElementById('mainApp').style.display = 'block';
+                alert("Account created! You can now log in.");
+                btn.innerText = "Login / Create Account"; btn.disabled = false;
             }
-        } catch (err) {
-            console.error(err);
-            alert("An unexpected error occurred.");
-            btn.innerText = "Login / Create Account";
-            btn.disabled = false;
+        } else {
+            updateUI(authData.user);
         }
     }
 
-    function openPayment() {
+    function openPayment(propertyName) {
         const area = document.getElementById('paymentArea');
-        area.style.display = area.style.display === 'block' ? 'none' : 'block';
+        area.style.display = 'block';
+        const waLink = document.getElementById('waLink');
+        const msg = `I have made a payment for shares in: ${propertyName}`;
+        waLink.href = `https://wa.me/2347047056423?text=${encodeURIComponent(msg)}`;
     }
 
     function checkWithdrawal() {
-        alert("Withdrawal requests are processed between the 25th and 30th of each month. Your current balance must be at least ₦5,000.");
-    }
-        // --- PERSISTENCE LOGIC START ---
-    
-    // Check for an existing session whenever the page loads
-    window.onload = async () => {
-        const { data: { session } } = await _supabase.auth.getSession();
-        if (session) {
-            updateUI(session.user);
-        }
-    };
-
-    // This function updates the balance and switches the view
-    async function updateUI(user) {
-        const { data: profile } = await _supabase
-            .from('profiles')
-            .select('balance')
-            .eq('id', user.id)
-            .single();
-
-        if (profile) {
-            document.getElementById('displayBalance').innerText = "₦" + profile.balance.toLocaleString();
-        }
-
-        document.getElementById('loginOverlay').style.display = 'none';
-        document.getElementById('mainApp').style.display = 'block';
+        alert("Withdrawal processing is between the 25th and 30th. Minimum ₦5,000 required.");
     }
 
-    // Replace your Sign Out logic to actually sign out of Supabase
     async function handleSignOut() {
         await _supabase.auth.signOut();
         location.reload(); 
     }
-    
-    // --- PERSISTENCE LOGIC END ---
-    window.onload = async () => {
-        const { data: { session } } = await _supabase.auth.getSession();
-        if (session) {
-            updateUI(session.user);
-        }
-    };
-
 </script>
-
 </body>
 </html>
