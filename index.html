@@ -5,52 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real Threads | Premium Property Shares</title>
     <style>
-    :root {
-        --gold: #D4AF37;
-        --black: #1a1a1a;
-        --dark-grey: #2d2d2d;
-        --white: #ffffff;
-    }
+        :root {
+            --gold: #D4AF37;
+            --black: #1a1a1a;
+            --dark-grey: #2d2d2d;
+            --white: #ffffff;
+        }
 
-    /* 1. LUXURY ANIMATIONS */
-    @keyframes slideUpFade {
-        from { opacity: 0; transform: translateY(40px); }
-        to { opacity: 1; transform: translateY(0); }
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
+        .container { 
+            width: 100%;
+            max-width: 400px; 
+            margin: 20px; 
+            animation: slideUpFade 0.6s ease-out;
+        }
 
-        .container { max-width: 500px; margin: auto; }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .header { 
-            text-align: center; padding: 30px 0; 
-            border-bottom: 1px solid var(--gold); margin-bottom: 30px; 
+            text-align: center; 
+            padding: 20px 0; 
+            border-bottom: 1px solid var(--gold); 
+            margin-bottom: 30px; 
         }
 
-        h1 { color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin: 0; }
+        h1 { color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin: 0; font-size: 24px; }
 
         .card { 
-            background: var(--dark-grey); padding: 25px; 
-            border-radius: 15px; border: 1px solid #444;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 25px; 
+            background: var(--dark-grey); 
+            padding: 25px; 
+            border-radius: 15px; 
+            border: 1px solid #444;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            margin-bottom: 25px; 
         }
 
-        .price { font-size: 26px; color: var(--gold); font-weight: bold; }
+        .price { font-size: 26px; color: var(--gold); font-weight: bold; margin: 10px 0; }
 
         .btn { 
-            background: var(--gold); color: var(--black); 
-            padding: 14px; border: none; border-radius: 8px; 
-            width: 100%; font-size: 16px; font-weight: bold; 
-            cursor: pointer; margin-top: 15px; transition: 0.3s;
+            background: var(--gold); 
+            color: var(--black); 
+            padding: 14px; 
+            border: none; 
+            border-radius: 8px; 
+            width: 100%; 
+            font-size: 16px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-top: 15px; 
+            transition: 0.3s;
         }
 
-        .btn:hover { background: #b8962d; }
+        .btn:hover { background: #b8962d; transform: translateY(-2px); }
 
         .btn-outline {
-            background: transparent; border: 1px solid var(--gold); color: var(--gold);
+            background: transparent; 
+            border: 1px solid var(--gold); 
+            color: var(--gold);
         }
 
         .payment-box { 
-            display: none; background: #000; border: 1px solid var(--gold); 
-            padding: 20px; border-radius: 10px; margin-top: 20px; 
+            display: none; 
+            background: #000; 
+            border: 1px solid var(--gold); 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin-top: 20px; 
+            animation: slideUpFade 0.3s ease-in;
         }
 
         .stats { display: flex; justify-content: space-between; margin-top: 15px; color: #aaa; font-size: 13px; }
@@ -63,8 +97,24 @@
         }
         
         input {
-            width: 80%; padding: 12px; margin: 10px 0;
-            background: #333; border: 1px solid #555; color: white; border-radius: 5px;
+            width: 100%; 
+            padding: 12px; 
+            margin: 10px 0;
+            background: #333; 
+            border: 1px solid #555; 
+            color: white; 
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 12px;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -73,10 +123,10 @@
 <div id="loginOverlay">
     <div class="container">
         <h1 style="margin-bottom: 10px;">REAL THREADS</h1>
-        <p style="color: #888;">MEMBERS PORTAL</p>
+        <p style="color: #888; margin-bottom: 20px;">MEMBERS PORTAL</p>
         <input type="email" id="email" placeholder="Email Address">
         <input type="password" id="pass" placeholder="Password">
-        <button class="btn" onclick="enterApp()">Login / Create Account</button>
+        <button class="btn" id="loginBtn" onclick="enterApp()">Login / Create Account</button>
         <p style="font-size: 12px; color: #555; margin-top: 20px;">Secure Institutional Grade Investment</p>
     </div>
 </div>
@@ -84,19 +134,21 @@
 <div class="container" id="mainApp" style="display:none;">
     <div class="header">
         <h1>REAL THREADS</h1>
-        <p style="color: var(--gold); font-size: 12px; letter-spacing: 1px;">PREMIUM REAL ESTATE SHARES</p>
+        <p style="color: var(--gold); font-size: 10px; letter-spacing: 2px;">PREMIUM REAL ESTATE SHARES</p>
     </div>
 
     <div class="card">
-        <h3>Lekki Diamond Suite</h3>
+        <h3 style="margin:0;">Lekki Diamond Suite</h3>
         <p class="price">₦3,000 <span style="font-size: 12px; color: #888;">minimum share</span></p>
         <button class="btn" onclick="openPayment()">Invest Now</button>
 
         <div id="paymentArea" class="payment-box">
             <strong style="color: var(--gold);">SECURE PAYMENT</strong><br><br>
-            Bank: <b>Momo PSB</b><br>
-            Account: <b>7047056423</b><br>
-            Name: <b>Real Threads</b><br><br>
+            <div style="font-size: 14px; line-height: 1.6;">
+                Bank: <b>Momo PSB</b><br>
+                Account: <b>7047056423</b><br>
+                Name: <b>Real Threads</b>
+            </div><br>
             
             <a href="https://wa.me/2347047056423?text=I%20have%20made%20a%20payment%20for%20Real%20Threads%20Shares." 
                style="display: block; background: #25D366; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; width: 100%; text-align: center; box-sizing: border-box;">
@@ -106,20 +158,24 @@
     </div>
 
     <div class="card">
-        <h3>Portfolio Balance</h3>
-        <p style="font-size: 32px; margin: 10px 0; color: var(--gold);">₦0.00</p>
+        <h3 style="margin:0; font-size: 16px; color: #aaa;">Portfolio Balance</h3>
+        <p id="displayBalance" style="font-size: 36px; margin: 10px 0; color: var(--gold); font-weight: bold;">₦0.00</p>
         <div class="stats">
-            <span>Min. Withdrawal: ₦5,000</span>
+            <span>Min. Payout: ₦5,000</span>
             <span>Monthly Cycle</span>
         </div>
         <button class="btn btn-outline" onclick="checkWithdrawal()">Request Payout</button>
+    </div>
+
+    <div style="text-align: center;">
+        <button class="logout-btn" onclick="location.reload()">Sign Out of Secure Portal</button>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-        // Real Threads Database Connection
+    // Configuration
     const S_URL = "https://cdeyjqoldxcccvertmsc.supabase.co";
     const S_KEY = "sb_publishable_hCXRwG-dYteeLvkgQcJrOg_FIivzgBB";
     const _supabase = supabase.createClient(S_URL, S_KEY);
@@ -127,43 +183,66 @@
     async function enterApp() {
         const email = document.getElementById('email').value;
         const password = document.getElementById('pass').value;
+        const btn = document.getElementById('loginBtn');
 
         if (!email || !password) {
-            alert("Please enter your credentials.");
+            alert("Please enter both email and password.");
             return;
         }
 
-        // 1. Logs in existing users
-        const { data: authData, error } = await _supabase.auth.signInWithPassword({ email, password });
+        btn.innerText = "Authenticating...";
+        btn.disabled = true;
 
-        if (error) {
-            // 2. Creates a new account if one doesn't exist
-            const { error: signUpError } = await _supabase.auth.signUp({ email, password });
-            if (signUpError) alert(signUpError.message);
-            else alert("Account created! Now log in to see your balance.");
-        } else {
-            // 3. SUCCESS: Fetch the ₦ balance from the 'profiles' table
-            const { data: profile } = await _supabase
-                .from('profiles')
-                .select('balance')
-                .eq('id', authData.user.id)
-                .single();
+        try {
+            // Attempt Login
+            const { data: authData, error: loginError } = await _supabase.auth.signInWithPassword({ email, password });
 
-            if (profile) {
-                // Update the dashboard with the actual balance from the database
-                document.getElementById('displayBalance').innerText = "₦" + profile.balance.toLocaleString();
+            if (loginError) {
+                // If login fails, attempt to create account
+                const { data: signUpData, error: signUpError } = await _supabase.auth.signUp({ email, password });
+                
+                if (signUpError) {
+                    alert("Error: " + signUpError.message);
+                    btn.innerText = "Login / Create Account";
+                    btn.disabled = false;
+                } else {
+                    alert("Account created! If email confirmation is required, check your inbox. Otherwise, try logging in now.");
+                    btn.innerText = "Login / Create Account";
+                    btn.disabled = false;
+                }
+            } else {
+                // Login Success -> Fetch Profile Balance
+                const { data: profile, error: profileError } = await _supabase
+                    .from('profiles')
+                    .select('balance')
+                    .eq('id', authData.user.id)
+                    .single();
+
+                if (profile) {
+                    document.getElementById('displayBalance').innerText = "₦" + profile.balance.toLocaleString();
+                }
+
+                // UI Transition
+                document.getElementById('loginOverlay').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
             }
-
-            // Hide login and show the dashboard
-            document.getElementById('loginOverlay').style.display = 'none';
-            document.getElementById('mainApp').style.display = 'block';
+        } catch (err) {
+            console.error(err);
+            alert("An unexpected error occurred.");
+            btn.innerText = "Login / Create Account";
+            btn.disabled = false;
         }
     }
 
     function openPayment() {
-        document.getElementById('paymentArea').style.display = 'block';
+        const area = document.getElementById('paymentArea');
+        area.style.display = area.style.display === 'block' ? 'none' : 'block';
     }
 
     function checkWithdrawal() {
-        alert("Withdrawals are processed between the 25th-30th. Minimum ₦5,000.");
+        alert("Withdrawal requests are processed between the 25th and 30th of each month. Your current balance must be at least ₦5,000.");
     }
+</script>
+
+</body>
+</html>
